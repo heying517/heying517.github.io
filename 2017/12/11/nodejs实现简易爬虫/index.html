@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Node.js实现的简易爬虫为什么要写这个爬虫呢？ 因为前两天时间朋友推荐一个静态网站生成器Hexo，我一看可以快速搭建一个博客还挺方便的，但懒惰的我又不想自己写，于是我就想能不能写个爬虫去爬人家网站，刚好是md格式文件放在post文件夹里面就完了为什么选择利用node来写爬虫呢？就是因为crawler这个库，全兼容jQuery语法，熟悉的话用起来完全是傻瓜式上手，再用to-markdown换成需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js实现的简易爬虫">
+<meta property="og:url" content="http://yoursite.com/2017/12/11/nodejs实现简易爬虫/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="Node.js实现的简易爬虫为什么要写这个爬虫呢？ 因为前两天时间朋友推荐一个静态网站生成器Hexo，我一看可以快速搭建一个博客还挺方便的，但懒惰的我又不想自己写，于是我就想能不能写个爬虫去爬人家网站，刚好是md格式文件放在post文件夹里面就完了为什么选择利用node来写爬虫呢？就是因为crawler这个库，全兼容jQuery语法，熟悉的话用起来完全是傻瓜式上手，再用to-markdown换成需">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://camo.githubusercontent.com/eb8376b20a8dfb4ac4d6b31148641ecabf3c430b/687474703a2f2f6e6f74652e796f7564616f2e636f6d2f7977732f7075626c69632f7265736f757263652f65363862333230393836386534666530373034353930663466396264643030382f786d6c6e6f74652f5745425245534f5552434534323234363766386464323364393132353562373663613862336136316461622f353931">
+<meta property="og:image" content="https://camo.githubusercontent.com/747c583dda8fd3fd516483fb600989bb9f47aefa/687474703a2f2f6e6f74652e796f7564616f2e636f6d2f7977732f7075626c69632f7265736f757263652f65363862333230393836386534666530373034353930663466396264643030382f786d6c6e6f74652f5745425245534f5552434564353433626432336133326566366664666133663066363139623737393937332f353939">
+<meta property="og:updated_time" content="2017-12-11T10:14:14.835Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js实现的简易爬虫">
+<meta name="twitter:description" content="Node.js实现的简易爬虫为什么要写这个爬虫呢？ 因为前两天时间朋友推荐一个静态网站生成器Hexo，我一看可以快速搭建一个博客还挺方便的，但懒惰的我又不想自己写，于是我就想能不能写个爬虫去爬人家网站，刚好是md格式文件放在post文件夹里面就完了为什么选择利用node来写爬虫呢？就是因为crawler这个库，全兼容jQuery语法，熟悉的话用起来完全是傻瓜式上手，再用to-markdown换成需">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/eb8376b20a8dfb4ac4d6b31148641ecabf3c430b/687474703a2f2f6e6f74652e796f7564616f2e636f6d2f7977732f7075626c69632f7265736f757263652f65363862333230393836386534666530373034353930663466396264643030382f786d6c6e6f74652f5745425245534f5552434534323234363766386464323364393132353562373663613862336136316461622f353931">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/11/nodejs实现简易爬虫/"/>
+
+
+
+
+
+  <title>Node.js实现的简易爬虫 | BLOG</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/11/nodejs实现简易爬虫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="He Ying">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js实现的简易爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-11T18:08:16+08:00">
+                2017-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Node-js实现的简易爬虫"><a href="#Node-js实现的简易爬虫" class="headerlink" title="Node.js实现的简易爬虫"></a>Node.js实现的简易爬虫</h2><p><strong>为什么要写这个爬虫呢？</strong></p>
+<p>因为前两天时间朋友推荐一个静态网站生成器<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>，我一看可以快速搭建一个博客还挺方便的，但懒惰的我又不想自己写，于是我就想能不能写个爬虫去爬人家网站，刚好是md格式文件放在post文件夹里面就完了<strong>为什么选择利用node来写爬虫呢？</strong><br>就是因为<a href="https://github.com/bda-research/node-crawler" target="_blank" rel="noopener">crawler</a>这个库，全兼容jQuery语法，熟悉的话用起来完全是傻瓜式上手，再用<a href="https://github.com/domchristie/to-markdown" target="_blank" rel="noopener">to-markdown</a>换成需要的markdown格式，存入mongodb，这过程简直不要太爽歪歪。</p>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><p>首先选择一个要爬取的网站，为了便于处理，选择用markdown格式上传的网站，这里选择了我比较熟悉的简书、csnd、segmentfault，下面以简书30天热门为例。</p>
+<a id="more"></a>
+<h3 id="一、分析页面"><a href="#一、分析页面" class="headerlink" title="一、分析页面"></a>一、分析页面</h3><p><img src="https://camo.githubusercontent.com/eb8376b20a8dfb4ac4d6b31148641ecabf3c430b/687474703a2f2f6e6f74652e796f7564616f2e636f6d2f7977732f7075626c69632f7265736f757263652f65363862333230393836386534666530373034353930663466396264643030382f786d6c6e6f74652f5745425245534f5552434534323234363766386464323364393132353562373663613862336136316461622f353931" alt="文章列表"></p>
+<p>用开发者工具查看此网页结构，分析出每一条文章的链接地址。</p>
+<p>随后进入详情分析具体结构</p>
+<p><img src="https://camo.githubusercontent.com/747c583dda8fd3fd516483fb600989bb9f47aefa/687474703a2f2f6e6f74652e796f7564616f2e636f6d2f7977732f7075626c69632f7265736f757263652f65363862333230393836386534666530373034353930663466396264643030382f786d6c6e6f74652f5745425245534f5552434564353433626432336133326566366664666133663066363139623737393937332f353939" alt="文章详情页"></p>
+<p>从上面的标记可以分析出标题、时间、内容、作者的DOM结构</p>
+<h3 id="二、引入依赖"><a href="#二、引入依赖" class="headerlink" title="二、引入依赖"></a>二、引入依赖</h3><p>爬取网站代码部分：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Crawler = <span class="built_in">require</span>(<span class="string">"crawler"</span>);</span><br><span class="line"><span class="keyword">var</span> toMarkdown = <span class="built_in">require</span>(<span class="string">'to-markdown'</span>);</span><br></pre></td></tr></table></figure>
+<p>mongodb部分：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> schemas = <span class="built_in">require</span>(<span class="string">'mongodb'</span>);</span><br><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h3><p>根据分析的网页结构套用Crawler，toMarkdown这两个库即可实现，请先阅读这两个库的使用规则，如何使用我不介绍。以下为核心代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Crawler();</span><br><span class="line"></span><br><span class="line">c.queue([&#123;</span><br><span class="line">  uri: thisWeb.url + thisWeb.uri,</span><br><span class="line">  jQuery: <span class="literal">true</span>,</span><br><span class="line">  maxConnections: <span class="number">10</span>,</span><br><span class="line"></span><br><span class="line">  callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(error);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> $ = res.$;</span><br><span class="line">      <span class="keyword">var</span> list = $(thisWeb.getElementBy.noteList);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; list.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> uri = $(list[i]).find(thisWeb.getElementBy.noteListUri).attr(<span class="string">'href'</span>);</span><br><span class="line">        <span class="keyword">if</span>(uri.indexOf(<span class="string">'http'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">          uri = thisWeb.url + uri</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (uri) &#123;</span><br><span class="line">          c.queue([&#123;</span><br><span class="line">            uri: uri,</span><br><span class="line">            jQuery: <span class="literal">true</span>,</span><br><span class="line">            maxConnections: <span class="number">10</span>,</span><br><span class="line"></span><br><span class="line">            callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</span><br><span class="line">              <span class="keyword">if</span> (error) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(error);</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">var</span> $ = res.$;</span><br><span class="line">                <span class="keyword">var</span> url = res.options.uri;</span><br><span class="line">                <span class="keyword">var</span> crawlerDetails = thisWeb.getElementBy.crawlerDetails;</span><br><span class="line">                <span class="keyword">var</span> title = &#123; <span class="attr">title</span>: getContent(crawlerDetails.title, $) &#125;;</span><br><span class="line">                  date = &#123; <span class="attr">date</span>: formatTime(getContent(crawlerDetails.date, $), /\*<span class="regexp">/g) &#125;,</span></span><br><span class="line"><span class="regexp">                  author = &#123; author: getContent(crawlerDetails.author, $) &#125;,</span></span><br><span class="line"><span class="regexp">                  noteContent = &#123; noteContent: getContent(crawlerDetails.noteContent, $, /</span>(&lt;([^&gt;]+)&gt;)/g) &#125;,</span><br><span class="line">                noteId = &#123; noteId: url.substring(url.lastIndexOf('/') + 1) &#125;;</span><br><span class="line">                var noteList = Object.assign(noteId, title, date, author, noteContent);</span><br><span class="line">                //插入数据库</span><br><span class="line">                mongoData.getByConditions(title).then((docs) =&gt; &#123;</span><br><span class="line">                  if (docs.length) &#123;</span><br><span class="line">                    console.log('已存在文章：', docs[0].title);</span><br><span class="line">                    return false;</span><br><span class="line">                  &#125; else &#123;</span><br><span class="line">                    mongoData.insert(noteList).then((doc) =&gt; &#123;</span><br><span class="line">                      console.log('文章《' + doc.title + '》插入成功');</span><br><span class="line">                      createMD(doc.noteId, doc);</span><br><span class="line">                    &#125;, (error) =&gt; &#123;</span><br><span class="line">                      console.log(error);</span><br><span class="line">                    &#125;)</span><br><span class="line">                  &#125;</span><br><span class="line">                &#125;, (error) =&gt; &#123;</span><br><span class="line">                  console.log(error);</span><br><span class="line">                &#125;);</span><br><span class="line">              &#125;</span><br><span class="line">              done();</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;]);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    done();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>为了便于爬取多个网站，可以在config.js里面配置好各个网站的结构信息，最后只需修改配置文件的 crawlerThisWeb 参数即可。配置文件实现代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  mongodbServer: &#123;</span><br><span class="line">    host: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    port: <span class="string">"27017"</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  jianshuConf: &#123;</span><br><span class="line">    database: &#123;</span><br><span class="line">      user: <span class="string">'heying'</span>,</span><br><span class="line">      password: <span class="string">'heying123456'</span>,</span><br><span class="line">      dbs: <span class="string">'jianshu_note'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    url: <span class="string">'http://www.jianshu.com'</span>,</span><br><span class="line">    uri: <span class="string">'/trending/monthly?utm_medium=index-banner-s&amp;utm_source=desktop'</span>, <span class="comment">//简书30日热门</span></span><br><span class="line">    getElementBy: &#123;</span><br><span class="line">      noteList: <span class="string">'ul.note-list &gt; li'</span>,</span><br><span class="line">      noteListUri: <span class="string">'.wrap-img'</span>,</span><br><span class="line">      crawlerDetails: &#123;</span><br><span class="line">        title: <span class="string">'.article .title'</span>,</span><br><span class="line">        date: <span class="string">'.publish-time'</span>,</span><br><span class="line">        author: <span class="string">'.author span.name &gt; a'</span>,</span><br><span class="line">        noteContent: <span class="string">'.show-content'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  csdnConf: &#123;</span><br><span class="line">    database: &#123;</span><br><span class="line">      user: <span class="string">'csdn_note_heying'</span>,</span><br><span class="line">      password: <span class="string">'csdn_note_heying123456'</span>,</span><br><span class="line">      dbs: <span class="string">'csdn_note'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    url: <span class="string">'http://blog.csdn.net'</span>,</span><br><span class="line">    uri: <span class="string">'/column/details/17076.html'</span>,</span><br><span class="line">    getElementBy: &#123;</span><br><span class="line">      noteList: <span class="string">'ul.detail_list &gt; li'</span>,</span><br><span class="line">      noteListUri: <span class="string">'h4 a'</span>,</span><br><span class="line">      crawlerDetails: &#123;</span><br><span class="line">        title: <span class="string">'.link_title a'</span>,</span><br><span class="line">        date: <span class="string">'.article_manage .link_postdate'</span>,</span><br><span class="line">        author: <span class="string">'#blog_userface .user_name'</span>,</span><br><span class="line">        noteContent: <span class="string">'.markdown_views'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  segmentfaultConf: &#123;</span><br><span class="line">    database: &#123;</span><br><span class="line">      user: <span class="string">'segmentfault_note_heying'</span>,</span><br><span class="line">      password: <span class="string">'segmentfault_note_heying123456'</span>,</span><br><span class="line">      dbs: <span class="string">'segmentfault_note'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    url: <span class="string">'https://segmentfault.com'</span>,</span><br><span class="line">    uri: <span class="string">'/blogs'</span>,</span><br><span class="line">    getElementBy: &#123;</span><br><span class="line">      noteList: <span class="string">'.stream-list &gt; .stream-list__item'</span>,</span><br><span class="line">      noteListUri: <span class="string">'.summary h2.title a'</span>,</span><br><span class="line">      crawlerDetails: &#123;</span><br><span class="line">        title: <span class="string">'#articleTitle a'</span>,</span><br><span class="line">        author: <span class="string">'.article__author strong'</span>,</span><br><span class="line">        noteContent: <span class="string">'.article__content'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mongodbServer: config.mongodbServer,</span><br><span class="line">  crawlerThisWeb: config.segmentfaultConf</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>大概思路就是这个样子，具体实现请看源码。如果不想以列表的方式进行爬取， 只是想爬取单个文章，请修改crawler.js即可，写法更简单，这里我也就不想说怎么改了（不会的话可以和爬虫告别了）</p>
+<p>除了使用crawler还可以使用<a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="noopener">cheerio</a>。cheerio思路也很简单，爬取网页，引入该网站使用到的css链接。不过本人更青睐功能更强大crawler，因为cheerio还要自己写http请求，麻烦~~</p>
+<p>源码请戳<a href="https://github.com/heying517/crawlerjs-toMarkdown-mongodb.git" target="_blank" rel="noopener">这里</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/08/WeChat_QQ_Share/" rel="next" title="【教程】自定义微信、QQ内容分享">
+                <i class="fa fa-chevron-left"></i> 【教程】自定义微信、QQ内容分享
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="He Ying" />
+            
+              <p class="site-author-name" itemprop="name">He Ying</p>
+              <p class="site-description motion-element" itemprop="description">~ Easy Study ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js实现的简易爬虫"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Node-js&#x5B9E;&#x73B0;&#x7684;&#x7B80;&#x6613;&#x722C;&#x866B;" class="headerlink" title="Node.js&#x5B9E;&#x73B0;&#x7684;&#x7B80;&#x6613;&#x722C;&#x866B;"></a>Node.js&#x5B9E;&#x73B0;&#x7684;&#x7B80;&#x6613;&#x722C;&#x866B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5B9E;&#x73B0;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x5B9E;&#x73B0;&#x8FC7;&#x7A0B;"></a>&#x5B9E;&#x73B0;&#x8FC7;&#x7A0B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、分析页面"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;&#x5206;&#x6790;&#x9875;&#x9762;" class="headerlink" title="&#x4E00;&#x3001;&#x5206;&#x6790;&#x9875;&#x9762;"></a>&#x4E00;&#x3001;&#x5206;&#x6790;&#x9875;&#x9762;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、引入依赖"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x5F15;&#x5165;&#x4F9D;&#x8D56;" class="headerlink" title="&#x4E8C;&#x3001;&#x5F15;&#x5165;&#x4F9D;&#x8D56;"></a>&#x4E8C;&#x3001;&#x5F15;&#x5165;&#x4F9D;&#x8D56;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、具体实现"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;&#x5177;&#x4F53;&#x5B9E;&#x73B0;" class="headerlink" title="&#x4E09;&#x3001;&#x5177;&#x4F53;&#x5B9E;&#x73B0;"></a>&#x4E09;&#x3001;&#x5177;&#x4F53;&#x5B9E;&#x73B0;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">He Ying</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

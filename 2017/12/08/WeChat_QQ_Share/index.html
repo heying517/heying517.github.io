@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="【教程】自定义微信、QQ内容分享准备工作 在微信公众平台申请微信服务号，需要通过了实名认证 准备一个有备案的域名、可以用的服务器和服务器IP地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【教程】自定义微信、QQ内容分享">
+<meta property="og:url" content="http://yoursite.com/2017/12/08/WeChat_QQ_Share/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="【教程】自定义微信、QQ内容分享准备工作 在微信公众平台申请微信服务号，需要通过了实名认证 准备一个有备案的域名、可以用的服务器和服务器IP地址">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE936f1088eacb56afc3444695c13ba21e/414">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE3f51823c9114629a230b527e3693a07e/412">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE50b116da5c9833d24026ae4a5c7d06fe/430">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE8739d9c3311df71493d3c3ac13a7991e/428">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCEe51a0863637402c50c3cf3bf4dc1ca15/426">
+<meta property="og:updated_time" content="2017-12-08T07:54:24.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【教程】自定义微信、QQ内容分享">
+<meta name="twitter:description" content="【教程】自定义微信、QQ内容分享准备工作 在微信公众平台申请微信服务号，需要通过了实名认证 准备一个有备案的域名、可以用的服务器和服务器IP地址">
+<meta name="twitter:image" content="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE936f1088eacb56afc3444695c13ba21e/414">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/08/WeChat_QQ_Share/"/>
+
+
+
+
+
+  <title>【教程】自定义微信、QQ内容分享 | BLOG</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/08/WeChat_QQ_Share/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="He Ying">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【教程】自定义微信、QQ内容分享</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T15:49:02+08:00">
+                2017-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="【教程】自定义微信、QQ内容分享"><a href="#【教程】自定义微信、QQ内容分享" class="headerlink" title="【教程】自定义微信、QQ内容分享"></a>【教程】自定义微信、QQ内容分享</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
+<li>在<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众平台</a>申请微信服务号，需要通过了实名认证</li>
+<li>准备一个有备案的域名、可以用的服务器和服务器IP地址</li>
+</ol>
+<a id="more"></a>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="查看AppId，AppSecret以及绑定域名"><a href="#查看AppId，AppSecret以及绑定域名" class="headerlink" title="查看AppId，AppSecret以及绑定域名"></a>查看AppId，AppSecret以及绑定域名</h4><p>在微信公众平台后台，找到</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE936f1088eacb56afc3444695c13ba21e/414" alt="image"><br><img src="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE3f51823c9114629a230b527e3693a07e/412" alt="image"><br>将服务器IP加入IP 白名单里面</p>
+<h3 id="设置JS接口安全域名"><a href="#设置JS接口安全域名" class="headerlink" title="设置JS接口安全域名"></a>设置JS接口安全域名</h3><p>这个安全域名就是之前准备的域名</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE50b116da5c9833d24026ae4a5c7d06fe/430" alt="image"><br><img src="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCE8739d9c3311df71493d3c3ac13a7991e/428" alt="image"><br><img src="http://note.youdao.com/yws/public/resource/e68b3209868e4fe0704590f4f9bdd008/xmlnote/WEBRESOURCEe51a0863637402c50c3cf3bf4dc1ca15/426" alt="image"></p>
+<h3 id="微信JSSDK的签名"><a href="#微信JSSDK的签名" class="headerlink" title="微信JSSDK的签名"></a>微信JSSDK的签名</h3><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">微信的官方文档</a></p>
+<p><a href="http://demo.open.weixin.qq.com/jssdk/sample.zip" target="_blank" rel="noopener">示例代码下载</a></p>
+<p><strong>备注：</strong><br>链接中包含php、java、nodejs以及python的示例代码供第三方参考，第三方切记要对获取的accesstoken以及jsapi_ticket进行缓存以确保不会触发频率限制。</p>
+<p>这里我主要说明一下Nodejs方面，<a href="http://172.19.0.9:10080/wanli/wl_fenxiang/blob/dev/utils/wechat.js" target="_blank" rel="noopener">参考代码</a>已经封装好签名以及获取新的jsapi_ticket的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>);</span><br><span class="line"><span class="keyword">const</span> rp = <span class="built_in">require</span>(<span class="string">'request-promise'</span>);</span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  appId: <span class="string">'XXX'</span>, <span class="comment">//根据实际情况填写</span></span><br><span class="line">  appSecret: <span class="string">'XXX'</span> <span class="comment">//根据实际情况填写</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNewTicket</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> authData = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> tokenUrl = <span class="string">'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appId='</span> + config.appId + <span class="string">'&amp;secret='</span> + config.appSecret;</span><br><span class="line">  <span class="keyword">return</span> rp.get(tokenUrl)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> token = <span class="built_in">JSON</span>.parse(data).access_token;</span><br><span class="line">      <span class="keyword">if</span> (!token) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'no valid token'</span>);</span><br><span class="line">      authData.accesstoken = token;</span><br><span class="line">      <span class="keyword">var</span> ticketUrl = <span class="string">'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='</span> + token + <span class="string">'&amp;type=jsapi'</span>;</span><br><span class="line">      <span class="keyword">return</span> rp.get(ticketUrl);</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> ticket = <span class="built_in">JSON</span>.parse(data).ticket;</span><br><span class="line">      <span class="keyword">if</span> (!ticket) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'no valid ticket'</span>);</span><br><span class="line">      authData.ticket = ticket;</span><br><span class="line">      <span class="keyword">return</span> authData;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">"errcode"</span>:<span class="string">"10001"</span>,</span><br><span class="line">        <span class="string">"errmsg"</span>: err.message,</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTimesTamp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() / <span class="number">1000</span>) + <span class="string">''</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSignature</span>(<span class="params">url, ticket</span>) </span>&#123;</span><br><span class="line">  url = <span class="built_in">decodeURIComponent</span>(url);</span><br><span class="line">  <span class="keyword">var</span> timestamp = getTimesTamp();</span><br><span class="line">  <span class="keyword">var</span> noncestr = <span class="built_in">Math</span>.random().toString(<span class="number">36</span>).substr(<span class="number">2</span>, <span class="number">15</span>);</span><br><span class="line">  <span class="keyword">var</span> str = <span class="string">'jsapi_ticket='</span> + ticket + <span class="string">'&amp;noncestr='</span> + noncestr + <span class="string">'&amp;timestamp='</span> + timestamp + <span class="string">'&amp;url='</span> + url;</span><br><span class="line">  <span class="keyword">var</span> signature = crypto.createHash(<span class="string">'sha1'</span>).update(str).digest(<span class="string">'hex'</span>);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    appId: config.appId,</span><br><span class="line">    timestamp: timestamp,</span><br><span class="line">    nonceStr: noncestr,</span><br><span class="line">    signature: signature</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  getSignature: getSignature,</span><br><span class="line">  getNewTicket: getNewTicket</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="缓存jsapi-ticket以及access-token"><a href="#缓存jsapi-ticket以及access-token" class="headerlink" title="缓存jsapi_ticket以及access_token"></a>缓存jsapi_ticket以及access_token</h3><p>由于微信会限制访问接口的频率这里需要对缓存jsapi_ticket以及access_token</p>
+<p>Express缓存方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'/wechat'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ticket = req.app.locals.ticket;</span><br><span class="line">  <span class="keyword">var</span> accesstoken = req.app.locals.accesstoken;</span><br><span class="line">  <span class="keyword">var</span> cacheTime = req.app.locals.cacheTime;</span><br><span class="line">  <span class="keyword">var</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> EXPIRES = <span class="number">110</span> * <span class="number">60</span> * <span class="number">1000</span>; <span class="comment">// 1个小时50分钟失效</span></span><br><span class="line">  <span class="keyword">if</span> (ticket &amp;&amp; accesstoken &amp;&amp; cacheTime &amp;&amp; now - cacheTime &lt; EXPIRES) &#123;</span><br><span class="line">    res.json(wechat.getSignature(req.body.url, ticket));</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    wechat.getNewTicket().then(<span class="function"><span class="keyword">function</span>(<span class="params">authData</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (authData.errcode === <span class="string">'10001'</span>) &#123;</span><br><span class="line">        res.json(authData);</span><br><span class="line">      &#125;</span><br><span class="line">      req.app.locals.ticket = authData.ticket;</span><br><span class="line">      req.app.locals.accesstoken = authData.accesstoken;</span><br><span class="line">      req.app.locals.cacheTime = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">      res.json(wechat.getSignature(req.body.url, authData.ticket));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这里缓存在app.locals 里面，增加一个缓存时间，超过缓存时间后重新 获取新的jsapi_ticket和access_token</p>
+<p>可参考<a href="http://expressjs.com/zh-cn/" target="_blank" rel="noopener">Express</a>官网文档<a href="http://expressjs.com/zh-cn/api.html#app.locals" target="_blank" rel="noopener">app.locals</a>的相关资料。</p>
+<p><a href="http://koajs.com/" target="_blank" rel="noopener">Koa</a>思路和<a href="http://expressjs.com/zh-cn/" target="_blank" rel="noopener">Express</a>类似，只是路由代码有所不同，这里使用了Koajs的<a href="http://koajs.com/#app-context" target="_blank" rel="noopener">app.context</a>进行缓存<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'/signature'</span>, <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">ctx</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ticket = ctx.ticket;</span><br><span class="line">  <span class="keyword">var</span> accesstoken = ctx.accesstoken;</span><br><span class="line">  <span class="keyword">var</span> cacheTime = ctx.cacheTime;</span><br><span class="line">  <span class="keyword">var</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> EXPIRES = <span class="number">110</span> * <span class="number">60</span> * <span class="number">1000</span>; <span class="comment">// 1个小时50分钟失效</span></span><br><span class="line">  <span class="keyword">if</span> (ticket &amp;&amp; accesstoken &amp;&amp; cacheTime &amp;&amp; now - cacheTime &lt; EXPIRES) &#123;</span><br><span class="line">    ctx.body = wechat.getSignature(ctx.request.body.url, ticket);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> authData = <span class="keyword">await</span> wechat.getNewTicket();</span><br><span class="line">    <span class="keyword">if</span> (authData.errcode === <span class="string">'10001'</span>) &#123;</span><br><span class="line">      ctx.body = authData;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ctx.app.context.ticket = authData.ticket;</span><br><span class="line">      ctx.app.context.accesstoken = authData.accesstoken;</span><br><span class="line">      ctx.app.context.cacheTime = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">      ctx.body = wechat.getSignature(ctx.request.body.url, authData.ticket);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>以上node端代码均可在java环境下实现。</p>
+<h3 id="前端分享代码"><a href="#前端分享代码" class="headerlink" title="前端分享代码"></a>前端分享代码</h3><p>如果只做自定义微信、QQ分享功能，可以下载腾讯已封装好的对外分享组件<a href="http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js" target="_blank" rel="noopener">share.js</a>，同时支持CMD/AMD规范，这里讲未使用模块加载器。</p>
+<h4 id="一、在html中引入share-js"><a href="#一、在html中引入share-js" class="headerlink" title="一、在html中引入share.js"></a>一、在html中引入share.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="二、发送post请求，获取签名、公众号标识等信息（若不在微信传播可忽略此步骤，请直接看步骤三）"><a href="#二、发送post请求，获取签名、公众号标识等信息（若不在微信传播可忽略此步骤，请直接看步骤三）" class="headerlink" title="二、发送post请求，获取签名、公众号标识等信息（若不在微信传播可忽略此步骤，请直接看步骤三）"></a>二、发送post请求，获取签名、公众号标识等信息（若不在微信传播可忽略此步骤，请直接看步骤三）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.post(<span class="string">"/app_h5/wechat_share/signature"</span>, &#123; <span class="attr">url</span>: <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href.split(<span class="string">"#"</span>)[<span class="number">0</span>]) &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// res响应数据使用示例如下：</span></span><br><span class="line">  <span class="keyword">var</span> WXconfig = &#123;</span><br><span class="line">    swapTitleInWX: <span class="literal">true</span>,<span class="comment">//是否标题内容互换（仅朋友圈，因朋友圈内只显示标题）</span></span><br><span class="line">    appId: res.appId, <span class="comment">// 公众号的唯一标识</span></span><br><span class="line">    timestamp: res.timestamp, <span class="comment">// 生成签名的时间戳</span></span><br><span class="line">    nonceStr: res.nonceStr, <span class="comment">// 生成签名的随机串</span></span><br><span class="line">    signature: res.signature <span class="comment">// 签名</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="三、调用share-js已封装好的方法setShareInfo"><a href="#三、调用share-js已封装好的方法setShareInfo" class="headerlink" title="三、调用share.js已封装好的方法setShareInfo"></a>三、调用share.js已封装好的方法setShareInfo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">setShareInfo(&#123;</span><br><span class="line">    title: <span class="string">'父爱，在你看不到的地方'</span>, <span class="comment">// 分享标题</span></span><br><span class="line">    summary: <span class="string">'父爱如山，感觉不到只因身在此山中'</span>, <span class="comment">// 分享内容</span></span><br><span class="line">    pic: <span class="string">'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png'</span>, <span class="comment">// 分享图片</span></span><br><span class="line">    url: <span class="string">'http://qzs.qzone.qq.com/qzone/qzact/act/2015/father-day-m/index.html'</span>, <span class="comment">// 分享链接</span></span><br><span class="line">    <span class="comment">// 微信权限验证配置信息，若不在微信传播，可忽略</span></span><br><span class="line">    WXconfig: &#123;</span><br><span class="line">        swapTitleInWX: <span class="literal">true</span>, <span class="comment">// 是否标题内容互换（仅朋友圈，因朋友圈内只显示标题）</span></span><br><span class="line">        appId: appId, <span class="comment">// 公众号的唯一标识</span></span><br><span class="line">        timestamp: timestamp, <span class="comment">// 生成签名的时间戳</span></span><br><span class="line">        nonceStr: nonceStr, <span class="comment">// 生成签名的随机串</span></span><br><span class="line">        signature: signature <span class="comment">// 签名</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>完整代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ua = navigator.userAgent;</span><br><span class="line">  <span class="keyword">var</span> isWX = ua.match(<span class="regexp">/MicroMessenger\/([\d\.]+)/</span>);</span><br><span class="line">  <span class="keyword">var</span> shareParam = &#123;</span><br><span class="line">    title: <span class="string">'父爱，在你看不到的地方'</span>,</span><br><span class="line">    summary: <span class="string">'父爱如山，感觉不到只因身在此山中'</span>,</span><br><span class="line">    pic: <span class="string">'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png'</span>,</span><br><span class="line">    url: location.href.split(<span class="string">'#'</span>)[<span class="number">0</span>],</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">if</span> (isWX) &#123;</span><br><span class="line">    $.post(<span class="string">"/app_h5/wechat_share/signature"</span>, &#123; <span class="attr">url</span>: <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href.split(<span class="string">"#"</span>)[<span class="number">0</span>]) &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> wxConfig = &#123;</span><br><span class="line">        swapTitleInWX: <span class="literal">true</span>, <span class="comment">// 是否标题内容互换（仅朋友圈，因朋友圈内只显示标题）</span></span><br><span class="line">        appId: res.appId, <span class="comment">// 公众号的唯一标识</span></span><br><span class="line">        timestamp: res.timestamp, <span class="comment">// 生成签名的时间戳</span></span><br><span class="line">        nonceStr: res.nonceStr, <span class="comment">// 生成签名的随机串</span></span><br><span class="line">        signature: res.signature <span class="comment">// 签名</span></span><br><span class="line">      &#125;</span><br><span class="line">      setShareInfo(<span class="built_in">Object</span>.assign(shareParam, &#123; <span class="attr">WXconfig</span>: wxConfig &#125;));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    setShareInfo(shareParam);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)());</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>分享一般由页面传给后台参与签名后返回给页面，这时前端页面需要对URL进行encodeURIComponent处理后台再decodeURIComponent处理</li>
+<li>所分享的链接域名必须与微信后台配置的可信域名一致（如果是企业号则必须与当前企业号后台对应的应用可信域名一致），否则签名失败</li>
+<li>确保你获取用来签名的url是动态获取的。如果是html的静态页面在前端通过ajax将url传到后台签名，前端需要用js获取当前页面除去’#’hash部分的链接（可用location.href.split(‘#’)[0]获取,而且需要encodeURIComponent），因为页面一旦分享，微信客户端会在你的链接末尾加入其它参数，如果不是动态获取当前链接，将导致分享后的页面签名失败。</li>
+<li>其他常见错误参考：<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115</a></li>
+</ol>
+<p>要使用AMD/CMD规范的请移步腾讯查看完整版<a href="http://open.mobile.qq.com/api/component/share" target="_blank" rel="noopener">对外分享组件接口文档</a></p>
+<p>如果要开发更多功能，调用微信更多接口，请移步<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="noopener">微信的官方文档</a>，使用jweixin-1.2.0.js。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/11/nodejs实现简易爬虫/" rel="prev" title="Node.js实现的简易爬虫">
+                Node.js实现的简易爬虫 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="He Ying" />
+            
+              <p class="site-author-name" itemprop="name">He Ying</p>
+              <p class="site-description motion-element" itemprop="description">~ Easy Study ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#【教程】自定义微信、QQ内容分享"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x3010;&#x6559;&#x7A0B;&#x3011;&#x81EA;&#x5B9A;&#x4E49;&#x5FAE;&#x4FE1;&#x3001;QQ&#x5185;&#x5BB9;&#x5206;&#x4EAB;" class="headerlink" title="&#x3010;&#x6559;&#x7A0B;&#x3011;&#x81EA;&#x5B9A;&#x4E49;&#x5FAE;&#x4FE1;&#x3001;QQ&#x5185;&#x5BB9;&#x5206;&#x4EAB;"></a>&#x3010;&#x6559;&#x7A0B;&#x3011;&#x81EA;&#x5B9A;&#x4E49;&#x5FAE;&#x4FE1;&#x3001;QQ&#x5185;&#x5BB9;&#x5206;&#x4EAB;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"></a>&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x6B65;&#x9AA4;" class="headerlink" title="&#x6B65;&#x9AA4;"></a>&#x6B65;&#x9AA4;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看AppId，AppSecret以及绑定域名"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x67E5;&#x770B;AppId&#xFF0C;AppSecret&#x4EE5;&#x53CA;&#x7ED1;&#x5B9A;&#x57DF;&#x540D;" class="headerlink" title="&#x67E5;&#x770B;AppId&#xFF0C;AppSecret&#x4EE5;&#x53CA;&#x7ED1;&#x5B9A;&#x57DF;&#x540D;"></a>&#x67E5;&#x770B;AppId&#xFF0C;AppSecret&#x4EE5;&#x53CA;&#x7ED1;&#x5B9A;&#x57DF;&#x540D;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置JS接口安全域名"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x8BBE;&#x7F6E;JS&#x63A5;&#x53E3;&#x5B89;&#x5168;&#x57DF;&#x540D;" class="headerlink" title="&#x8BBE;&#x7F6E;JS&#x63A5;&#x53E3;&#x5B89;&#x5168;&#x57DF;&#x540D;"></a>&#x8BBE;&#x7F6E;JS&#x63A5;&#x53E3;&#x5B89;&#x5168;&#x57DF;&#x540D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信JSSDK的签名"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x5FAE;&#x4FE1;JSSDK&#x7684;&#x7B7E;&#x540D;" class="headerlink" title="&#x5FAE;&#x4FE1;JSSDK&#x7684;&#x7B7E;&#x540D;"></a>&#x5FAE;&#x4FE1;JSSDK&#x7684;&#x7B7E;&#x540D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存jsapi-ticket以及access-token"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x7F13;&#x5B58;jsapi-ticket&#x4EE5;&#x53CA;access-token" class="headerlink" title="&#x7F13;&#x5B58;jsapi_ticket&#x4EE5;&#x53CA;access_token"></a>&#x7F13;&#x5B58;jsapi_ticket&#x4EE5;&#x53CA;access_token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端分享代码"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#&#x524D;&#x7AEF;&#x5206;&#x4EAB;&#x4EE3;&#x7801;" class="headerlink" title="&#x524D;&#x7AEF;&#x5206;&#x4EAB;&#x4EE3;&#x7801;"></a>&#x524D;&#x7AEF;&#x5206;&#x4EAB;&#x4EE3;&#x7801;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、在html中引入share-js"><span class="nav-number">1.6.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;&#x5728;html&#x4E2D;&#x5F15;&#x5165;share-js" class="headerlink" title="&#x4E00;&#x3001;&#x5728;html&#x4E2D;&#x5F15;&#x5165;share.js"></a>&#x4E00;&#x3001;&#x5728;html&#x4E2D;&#x5F15;&#x5165;share.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、发送post请求，获取签名、公众号标识等信息（若不在微信传播可忽略此步骤，请直接看步骤三）"><span class="nav-number">1.6.2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x53D1;&#x9001;post&#x8BF7;&#x6C42;&#xFF0C;&#x83B7;&#x53D6;&#x7B7E;&#x540D;&#x3001;&#x516C;&#x4F17;&#x53F7;&#x6807;&#x8BC6;&#x7B49;&#x4FE1;&#x606F;&#xFF08;&#x82E5;&#x4E0D;&#x5728;&#x5FAE;&#x4FE1;&#x4F20;&#x64AD;&#x53EF;&#x5FFD;&#x7565;&#x6B64;&#x6B65;&#x9AA4;&#xFF0C;&#x8BF7;&#x76F4;&#x63A5;&#x770B;&#x6B65;&#x9AA4;&#x4E09;&#xFF09;" class="headerlink" title="&#x4E8C;&#x3001;&#x53D1;&#x9001;post&#x8BF7;&#x6C42;&#xFF0C;&#x83B7;&#x53D6;&#x7B7E;&#x540D;&#x3001;&#x516C;&#x4F17;&#x53F7;&#x6807;&#x8BC6;&#x7B49;&#x4FE1;&#x606F;&#xFF08;&#x82E5;&#x4E0D;&#x5728;&#x5FAE;&#x4FE1;&#x4F20;&#x64AD;&#x53EF;&#x5FFD;&#x7565;&#x6B64;&#x6B65;&#x9AA4;&#xFF0C;&#x8BF7;&#x76F4;&#x63A5;&#x770B;&#x6B65;&#x9AA4;&#x4E09;&#xFF09;"></a>&#x4E8C;&#x3001;&#x53D1;&#x9001;post&#x8BF7;&#x6C42;&#xFF0C;&#x83B7;&#x53D6;&#x7B7E;&#x540D;&#x3001;&#x516C;&#x4F17;&#x53F7;&#x6807;&#x8BC6;&#x7B49;&#x4FE1;&#x606F;&#xFF08;&#x82E5;&#x4E0D;&#x5728;&#x5FAE;&#x4FE1;&#x4F20;&#x64AD;&#x53EF;&#x5FFD;&#x7565;&#x6B64;&#x6B65;&#x9AA4;&#xFF0C;&#x8BF7;&#x76F4;&#x63A5;&#x770B;&#x6B65;&#x9AA4;&#x4E09;&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、调用share-js已封装好的方法setShareInfo"><span class="nav-number">1.6.3.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;&#x8C03;&#x7528;share-js&#x5DF2;&#x5C01;&#x88C5;&#x597D;&#x7684;&#x65B9;&#x6CD5;setShareInfo" class="headerlink" title="&#x4E09;&#x3001;&#x8C03;&#x7528;share.js&#x5DF2;&#x5C01;&#x88C5;&#x597D;&#x7684;&#x65B9;&#x6CD5;setShareInfo"></a>&#x4E09;&#x3001;&#x8C03;&#x7528;share.js&#x5DF2;&#x5C01;&#x88C5;&#x597D;&#x7684;&#x65B9;&#x6CD5;setShareInfo</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">He Ying</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
